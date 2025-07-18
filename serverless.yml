@@ -1,0 +1,18 @@
+service: loan-eligibility-engine
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+  environment:
+    DATABASE_ARN: <your-database-arn>
+    SECRET_ARN: <your-secret-arn>
+    DATABASE_NAME: <your-database-name>
+
+functions:
+  ingestUser Data:
+    handler: lambda_function.lambda_handler
+    events:
+      - http:
+          path: upload
+          method: post
